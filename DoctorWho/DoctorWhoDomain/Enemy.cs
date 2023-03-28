@@ -10,11 +10,11 @@ namespace DoctorWhoDomain
     {
         public Enemy()
         {
-            EpisodeEnemies = new List<Episode>();
+            EpisodeEnemies = new List<EpisodeEnemy>();
         }
         public int EnemyId { get; set; }
         public string? EnemyName { get; set; }
         public string? Description { get; set; }
-        public List<Episode> EpisodeEnemies { get; set; }
+        public List<EpisodeEnemy> EpisodeEnemies { get; set; }
     }
 }

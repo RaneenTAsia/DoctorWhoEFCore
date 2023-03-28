@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DoctorWho.Db.Migrations
 {
     [DbContext(typeof(DoctorWhoDbContext))]
-    [Migration("20230328100747_CreateTables")]
+    [Migration("20230329100640_CreateTables")]
     partial class CreateTables
     {
         /// <inheritdoc />
@@ -71,9 +71,9 @@ namespace DoctorWho.Db.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DoctorId"));
 
-                    b.Property<DateTime>("BirthDate")
+                    b.Property<DateTime?>("BirthDate")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
+                        .HasColumnType("DATE")
                         .HasDefaultValueSql("Null");
 
                     b.Property<string>("DoctorName")
@@ -83,14 +83,14 @@ namespace DoctorWho.Db.Migrations
                     b.Property<int>("DoctorNumber")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("FirstEpisodeDate")
+                    b.Property<DateTime?>("FirstEpisodeDate")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
+                        .HasColumnType("DATE")
                         .HasDefaultValueSql("Null");
 
-                    b.Property<DateTime>("LastEpisodeDate")
+                    b.Property<DateTime?>("LastEpisodeDate")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
+                        .HasColumnType("DATE")
                         .HasDefaultValueSql("Null");
 
                     b.HasKey("DoctorId");
@@ -134,12 +134,9 @@ namespace DoctorWho.Db.Migrations
                     b.Property<int>("DoctorId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("EnemyId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("EpisodeDate")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
+                        .HasColumnType("date")
                         .HasDefaultValueSql("Null");
 
                     b.Property<int>("EpisodeNumber")
@@ -174,8 +171,6 @@ namespace DoctorWho.Db.Migrations
                     b.HasIndex("AuthorId");
 
                     b.HasIndex("DoctorId");
-
-                    b.HasIndex("EnemyId");
 
                     b.ToTable("Episodes");
                 });
@@ -240,10 +235,6 @@ namespace DoctorWho.Db.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DoctorWhoDomain.Enemy", null)
-                        .WithMany("EpisodeEnemies")
-                        .HasForeignKey("EnemyId");
-
                     b.Navigation("Author");
 
                     b.Navigation("Doctor");
@@ -271,7 +262,7 @@ namespace DoctorWho.Db.Migrations
             modelBuilder.Entity("DoctorWhoDomain.EpisodeEnemy", b =>
                 {
                     b.HasOne("DoctorWhoDomain.Enemy", "Enemy")
-                        .WithMany()
+                        .WithMany("EpisodeEnemies")
                         .HasForeignKey("EnemyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

@@ -46,9 +46,9 @@ namespace DoctorWho.Db.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     DoctorNumber = table.Column<int>(type: "int", nullable: false),
                     DoctorName = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
-                    BirthDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "Null"),
-                    FirstEpisodeDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "Null"),
-                    LastEpisodeDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "Null")
+                    BirthDate = table.Column<DateTime>(type: "DATE", nullable: true, defaultValueSql: "Null"),
+                    FirstEpisodeDate = table.Column<DateTime>(type: "DATE", nullable: true, defaultValueSql: "Null"),
+                    LastEpisodeDate = table.Column<DateTime>(type: "DATE", nullable: true, defaultValueSql: "Null")
                 },
                 constraints: table =>
                 {
@@ -79,11 +79,10 @@ namespace DoctorWho.Db.Migrations
                     EpisodeNumber = table.Column<int>(type: "int", nullable: false, defaultValue: 0),
                     EpisodeType = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false, defaultValue: "Null"),
-                    EpisodeDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "Null"),
+                    EpisodeDate = table.Column<DateTime>(type: "date", nullable: false, defaultValueSql: "Null"),
                     AuthorId = table.Column<int>(type: "int", nullable: false),
                     DoctorId = table.Column<int>(type: "int", nullable: false),
-                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: false, defaultValue: "Null"),
-                    EnemyId = table.Column<int>(type: "int", nullable: true)
+                    Notes = table.Column<string>(type: "nvarchar(max)", nullable: false, defaultValue: "Null")
                 },
                 constraints: table =>
                 {
@@ -100,11 +99,6 @@ namespace DoctorWho.Db.Migrations
                         principalTable: "Doctors",
                         principalColumn: "DoctorId",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Episodes_Enemies_EnemyId",
-                        column: x => x.EnemyId,
-                        principalTable: "Enemies",
-                        principalColumn: "EnemyId");
                 });
 
             migrationBuilder.CreateTable(
@@ -188,11 +182,6 @@ namespace DoctorWho.Db.Migrations
                 name: "IX_Episodes_DoctorId",
                 table: "Episodes",
                 column: "DoctorId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Episodes_EnemyId",
-                table: "Episodes",
-                column: "EnemyId");
         }
 
         /// <inheritdoc />
@@ -208,6 +197,9 @@ namespace DoctorWho.Db.Migrations
                 name: "Companions");
 
             migrationBuilder.DropTable(
+                name: "Enemies");
+
+            migrationBuilder.DropTable(
                 name: "Episodes");
 
             migrationBuilder.DropTable(
@@ -215,9 +207,6 @@ namespace DoctorWho.Db.Migrations
 
             migrationBuilder.DropTable(
                 name: "Doctors");
-
-            migrationBuilder.DropTable(
-                name: "Enemies");
         }
     }
 }
