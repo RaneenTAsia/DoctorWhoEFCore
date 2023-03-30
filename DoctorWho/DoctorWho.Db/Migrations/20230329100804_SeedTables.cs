@@ -67,11 +67,11 @@ namespace DoctorWho.Db.Migrations
                 values: new object[,]
                 {
                     { 1, 1, 1, new DateTime(1963, 9, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Mystery", 1, "An Unearthly Child" },
-                    { 2, 1, 1, new DateTime(1963, 11, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Mystery", 1, "The Cave of Skulls" },
-                    { 3, 1, 1, new DateTime(1963, 12, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Mystery", 1, "The Forest of Fear" },
-                    { 4, 2, 1, new DateTime(1963, 12, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Mystery", 1, "The Firemake" },
-                    { 5, 3, 1, new DateTime(1963, 12, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Mystery", 1, "The Dead Planet" },
-                    { 6, 3, 1, new DateTime(1963, 12, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Mystery", 1, "Survicors" }
+                    { 2, 1, 1, new DateTime(1963, 11, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "Mystery", 1, "The Cave of Skulls" },
+                    { 3, 1, 1, new DateTime(1963, 12, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, "Mystery", 1, "The Forest of Fear" },
+                    { 4, 2, 1, new DateTime(1963, 12, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), 4, "Mystery", 1, "The Firemake" },
+                    { 5, 3, 1, new DateTime(1963, 12, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, "Mystery", 1, "The Dead Planet" },
+                    { 6, 3, 1, new DateTime(1963, 12, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), 6, "Mystery", 1, "Survivors" }
                 });
 
             migrationBuilder.InsertData(

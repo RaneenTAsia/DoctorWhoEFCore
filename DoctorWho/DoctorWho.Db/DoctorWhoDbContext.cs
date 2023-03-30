@@ -13,6 +13,9 @@ namespace DoctorWho.Db
         public DbSet<Episode> Episodes { get; set; }
         public DbSet<EpisodeCompanion> EpisodeCompanions { get; set; }
         public DbSet<EpisodeEnemy> EpisodeEnemies { get; set; }
+        public DbSet<ViewEpisodes> ViewEpisodes { get; set; }
+        public string CompanionsFunctionResult(int EpisodeId) => throw new NotSupportedException();
+        public string EnemiesFunctionResult(int EpisodeId) => throw new NotSupportedException();
 
         public DoctorWhoDbContext()
         {
@@ -113,11 +116,11 @@ namespace DoctorWho.Db
             List<Episode> episodes = new List<Episode>
             {
                 new Episode{ EpisodeId= 1, SeriesNumber = 1, EpisodeNumber = 1, EpisodeType = "Mystery", Title = "An Unearthly Child", EpisodeDate = (new DateTime(1963,09,07)), AuthorId = 1, DoctorId = 1},
-                new Episode{ EpisodeId= 2, SeriesNumber = 1, EpisodeNumber = 1, EpisodeType = "Mystery", Title = "The Cave of Skulls", EpisodeDate = new DateTime(1963,11,30), AuthorId = 1, DoctorId = 1},
-                new Episode{ EpisodeId= 3, SeriesNumber = 1, EpisodeNumber = 1, EpisodeType = "Mystery", Title = "The Forest of Fear", EpisodeDate = new DateTime(1963,12,07), AuthorId = 1, DoctorId = 1},
-                new Episode{ EpisodeId= 4, SeriesNumber = 1, EpisodeNumber = 1, EpisodeType = "Mystery", Title = "The Firemake", EpisodeDate = new DateTime(1963,12,14), AuthorId = 2, DoctorId = 1},
-                new Episode{ EpisodeId= 5, SeriesNumber = 1, EpisodeNumber = 1, EpisodeType = "Mystery", Title = "The Dead Planet", EpisodeDate = new DateTime(1963,12,21), AuthorId = 3, DoctorId = 1},
-                new Episode{ EpisodeId= 6, SeriesNumber = 1, EpisodeNumber = 1, EpisodeType = "Mystery", Title = "Survicors", EpisodeDate = new DateTime(1963,12,28), AuthorId = 3, DoctorId = 1}
+                new Episode{ EpisodeId= 2, SeriesNumber = 1, EpisodeNumber = 2, EpisodeType = "Mystery", Title = "The Cave of Skulls", EpisodeDate = new DateTime(1963,11,30), AuthorId = 1, DoctorId = 1},
+                new Episode{ EpisodeId= 3, SeriesNumber = 1, EpisodeNumber = 3, EpisodeType = "Mystery", Title = "The Forest of Fear", EpisodeDate = new DateTime(1963,12,07), AuthorId = 1, DoctorId = 1},
+                new Episode{ EpisodeId= 4, SeriesNumber = 1, EpisodeNumber = 4, EpisodeType = "Mystery", Title = "The Firemake", EpisodeDate = new DateTime(1963,12,14), AuthorId = 2, DoctorId = 1},
+                new Episode{ EpisodeId= 5, SeriesNumber = 1, EpisodeNumber = 5, EpisodeType = "Mystery", Title = "The Dead Planet", EpisodeDate = new DateTime(1963,12,21), AuthorId = 3, DoctorId = 1},
+                new Episode{ EpisodeId= 6, SeriesNumber = 1, EpisodeNumber = 6, EpisodeType = "Mystery", Title = "Survivors", EpisodeDate = new DateTime(1963,12,28), AuthorId = 3, DoctorId = 1}
             };
             modelBuilder.Entity<Episode>().HasData(episodes);
 
@@ -153,6 +156,16 @@ namespace DoctorWho.Db
                 new EpisodeCompanion{ EpisodeCompanionId = 10, EpisodeId = 6, CompanionId = 3}
             };
             modelBuilder.Entity<EpisodeCompanion>().HasData(episodeCompanions);
+
+            //State functions as DbFunctions
+            modelBuilder.HasDbFunction(typeof(DoctorWhoDbContext).GetMethod(nameof(CompanionsFunctionResult), new[] { typeof(int) }))
+                .HasName("fnCompanions");
+            modelBuilder.HasDbFunction(typeof(DoctorWhoDbContext).GetMethod(nameof(EnemiesFunctionResult), new[] { typeof(int) }))
+               .HasName("fnEnemies");
+
+            //Mapping View
+            modelBuilder.Entity<ViewEpisodes>().HasNoKey().ToView("viewEpisodes");
+
         }
     }
 }

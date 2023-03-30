@@ -10,7 +10,10 @@ namespace DoctorWho.Db.Migrations
         {
             migrationBuilder.Sql(
                 @"CREATE VIEW viewEpisodes AS
-	            SELECT A.AuthorName,
+	            SELECT E.SeriesNumber,
+                       E.EpisodeNumber,
+                       E.Title,
+                       A.AuthorName,
                        D.DoctorName, 
                        dbo.fnCompanions(E.EpisodeId) AS Companions,
                        dbo.fnEnemies(E.EpisodeId) AS Enemies

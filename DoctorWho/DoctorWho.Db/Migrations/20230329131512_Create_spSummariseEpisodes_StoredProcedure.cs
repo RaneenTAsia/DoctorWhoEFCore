@@ -27,7 +27,7 @@ namespace DoctorWho.Db.Migrations
                   ORDER BY COUNT(EpisodeId) DESC
                   OFFSET 0 ROWS FETCH NEXT 3 ROWS ONLY
 
-                END;");
+                END");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -10,9 +10,9 @@ namespace DoctorWho.Db.Migrations
         {
             migrationBuilder.Sql(
                 @"CREATE FUNCTION fnCompanions(@EpisodeId INT)
-                RETURNS VARCHAR(255) AS 
+                RETURNS VARCHAR(MAX) AS 
 	                BEGIN
-		                DECLARE @Result VARCHAR(255) = ''
+		                DECLARE @Result VARCHAR(MAX) = ''
 
 		                SELECT @Result = @Result + C.CompanionName + ', '
 		                From Companions As C

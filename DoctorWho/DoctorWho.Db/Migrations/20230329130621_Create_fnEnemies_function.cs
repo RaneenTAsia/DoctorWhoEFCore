@@ -11,9 +11,9 @@ namespace DoctorWho.Db.Migrations
         {
             migrationBuilder.Sql(
                 @"CREATE FUNCTION fnEnemies(@EpisodeId INT)
-                RETURNS VARCHAR(255) AS 
+                RETURNS VARCHAR(MAX) AS 
 	                BEGIN
-		                DECLARE @Result VARCHAR(255) = ''
+		                DECLARE @Result VARCHAR(MAX) = ''
 
 		                SELECT @Result = @Result + E.EnemyName + ', '
 		                From Enemies As E
