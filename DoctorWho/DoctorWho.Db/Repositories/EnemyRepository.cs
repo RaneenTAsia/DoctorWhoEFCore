@@ -24,8 +24,9 @@ namespace DoctorWho.Db.Repositories
 
         public void Delete(int EnemyId)
         {
-            var author = _context.Enemies.Find(EnemyId);
-            _context.Enemies.FromSqlInterpolated($"DELETE FROM Enemies WHERE EnemyId = {EnemyId}");
+            var enemy = _context.Enemies.Find(EnemyId);
+            if(enemy != null) 
+            _context.Enemies.Remove(enemy);
             _context.SaveChanges();
         }
 
@@ -33,6 +34,17 @@ namespace DoctorWho.Db.Repositories
         {
             _context.Enemies.Add(new Enemy{ EnemyName = EnemyName, Description = Description });
             _context.SaveChanges();
+        }
+
+        public Enemy GetEnemyById(int EnemyId)
+        {
+            var enemy = _context.Enemies.Find(EnemyId);
+
+            if (enemy != null)
+                return enemy;
+
+            throw new Exception("Enemy Does Not Exist");
+
         }
     }
 }

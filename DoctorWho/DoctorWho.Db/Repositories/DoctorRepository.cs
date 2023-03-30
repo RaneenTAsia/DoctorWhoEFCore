@@ -28,7 +28,8 @@ namespace DoctorWho.Db.Repositories
         public void Delete(int DoctorId)
         {
             var doctor = _context.Doctors.Find(DoctorId);
-            _context.Doctors.FromSqlInterpolated($"DELETE FROM Doctors WHERE DoctorId = {DoctorId}");
+            if (doctor != null) 
+            _context.Doctors.Remove(doctor);
             _context.SaveChanges();
         }
 
@@ -44,6 +45,11 @@ namespace DoctorWho.Db.Repositories
 
             _context.Doctors.Add(doctor);
             _context.SaveChanges();
+        }
+
+        public List<Doctor> GetAllDoctors()
+        {
+           return _context.Doctors.ToList();
         }
     }
 }

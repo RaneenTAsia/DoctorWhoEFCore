@@ -22,7 +22,8 @@ namespace DoctorWho.Db.Repositories
         public void Delete(int CompanionId)
         {
             var author = _context.Companions.Find(CompanionId);
-            _context.Companions.FromSqlInterpolated($"DELETE FROM Companions WHERE CompanionId = {CompanionId}");
+            if (author != null)
+            _context.Companions.Remove(author);
             _context.SaveChanges();
         }
 
@@ -30,6 +31,17 @@ namespace DoctorWho.Db.Repositories
         {
             _context.Companions.Add(new Companion { CompanionName = CompanionName, WhoPlayed = WhoPlayed});
             _context.SaveChanges();
+        }
+
+        public Companion GetCompanionById(int CompanionId)
+        {
+            var companion = _context.Companions.Find(CompanionId);
+
+            if(companion != null)
+                return _context.Companions.Find(CompanionId);
+
+                throw new Exception("Companion Does Not Exist");
+            
         }
     }
 }

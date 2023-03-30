@@ -31,7 +31,8 @@ namespace DoctorWho.Db.Repositories
         public void Delete(int EpisodeId)
         {
             var Episode = _context.Episodes.Find(EpisodeId);
-            _context.Episodes.FromSqlInterpolated($"DELETE FROM Episodes WHERE EpisodeId = {EpisodeId}");
+            if(Episode != null)
+            _context.Episodes.Remove(Episode);
             _context.SaveChanges();
         }
 

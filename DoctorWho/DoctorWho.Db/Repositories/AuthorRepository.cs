@@ -21,8 +21,9 @@ namespace DoctorWho.Db.Repositories
 
         public void Delete(int AuthorId)
         {
-            var author = _context.Enemies.Find(AuthorId);
-            _context.Authors.FromSqlInterpolated($"DELETE FROM Authors WHERE AuthorId = {AuthorId}");
+            var author = _context.Authors.Find(AuthorId);
+            if(author != null)
+            _context.Authors.Remove(author);
             _context.SaveChanges();
         }
 

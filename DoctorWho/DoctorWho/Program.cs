@@ -2,13 +2,14 @@
 
 
 using DoctorWho.Db;
+using DoctorWho.Db.Repositories;
 using DoctorWhoDomain;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
 
 DoctorWhoDbContext _context = new DoctorWhoDbContext();
 
-Execute_fnCompanions(2);
+//Execute_fnCompanions(2);
 void Execute_fnCompanions(int EpisodeId)
 {
     var result = _context.Episodes
@@ -19,7 +20,7 @@ void Execute_fnCompanions(int EpisodeId)
     Console.WriteLine(result);
 }
 
-Execute_fnEnemies(2);
+//Execute_fnEnemies(2);
 void Execute_fnEnemies(int EpisodeId)
 {
     var result = _context.Episodes
@@ -30,7 +31,7 @@ void Execute_fnEnemies(int EpisodeId)
     Console.WriteLine(result);
 }
 
-Select_viewEpisodes();
+//Select_viewEpisodes();
 
 void Select_viewEpisodes()
 {
@@ -42,7 +43,7 @@ void Select_viewEpisodes()
     }
 }
 
-Execute_spSummariseEpisodes();
+//Execute_spSummariseEpisodes();
 
 void Execute_spSummariseEpisodes()
 {
@@ -95,3 +96,4 @@ void Execute_spSummariseEpisodes()
         cmd.Connection?.Close();
     }
 }
+
