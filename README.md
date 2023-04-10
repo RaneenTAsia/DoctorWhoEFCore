@@ -1,7 +1,6 @@
 # DoctorWhoEFCore
 
 ##Introduction
-
 Salam,
 This repository contains a project called DoctorWhoEFCore that implements Entity Framework Core to query and manipulate data from a database using an object-oriented paradigm. The subject of the project was the show Doctor Who, wherefore it creates a database containing entities such as episodes, doctors, companions, enemies, and authors concerned with the show and queries from it. The project is used to challenge interns of their knowledge of EFCore that they have carefully learned along their internship, such as shadow properties, migrations, DbContext, seeding, and more, all used to interact with the database.
 
