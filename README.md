@@ -1,6 +1,7 @@
 # DoctorWhoEFCore
 
-##Introduction
+## Introduction
+
 Salam,
 This repository contains a project called DoctorWhoEFCore that implements Entity Framework Core to query and manipulate data from a database using an object-oriented paradigm. The subject of the project was the show Doctor Who, wherefore it creates a database containing entities such as episodes, doctors, companions, enemies, and authors concerned with the show and queries from it. The project is used to challenge interns of their knowledge of EFCore that they have carefully learned along their internship, such as shadow properties, migrations, DbContext, seeding, and more, all used to interact with the database.
 
@@ -37,12 +38,12 @@ Following is the full project for those who are curious of the steps.
 12. Create a repository class for each entity and call it: `{EntityName}Repository.cs`, and move related methods from the previous requirements to the right repository. These repositories should exist in `Repositories` folder `DoctorWho.Db`
 
 
-##Further Topics
+## Further Topics
 
 1. Building business logic
 2. Performance tuning Entity Framework
 3. Separation of Concerns i.e. building the right architecture
 
-##Author
+## Author
 
 This project was made by [Raneen Asia](https://github.com/RaneenTAsia)

@@ -4,6 +4,7 @@
 using DoctorWho.Db;
 using DoctorWho.Db.Repositories;
 using DoctorWhoDomain;
+using DoctorWhoDomain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
 
